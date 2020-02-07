@@ -9,14 +9,12 @@ __license__ = "MIT"
 
 import argparse
 import time
+from pprint import pprint
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from requests_html import HTMLSession
 
 
 def test():
-
-    ## Selenium version
     url = "https://online.tugraz.at/tug_online/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses/226888?$ctx=design=ca;lang=en;rbacId=&$scrollTo=toc_DatesandGroups"
 
     chrome_options = webdriver.ChromeOptions()
@@ -26,20 +24,8 @@ def test():
     driver.get(url)
     time.sleep(1)
     page = driver.page_source
-    print(page)
     soup = BeautifulSoup(page, 'html.parser')
-    divs = soup.findAll("div", {"class": "compact-appointment"})
-    print(divs)
-    return
-
-    ## RequestsHTML version
-    url = "https://online.tugraz.at/tug_online/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses/226888?$ctx=design=ca;lang=en;rbacId=&$scrollTo=toc_DatesandGroups"
-    session = HTMLSession()
-    r = session.get(url)
-    r.html.render()
-    soup = BeautifulSoup(str(r.html), 'lxml')
-    print(r.html.text)
-    divs = soup.findAll("div", {"class": "compact-appointment"})
+    divs = soup.findAll("div", {"class": "compact-appointment-info"})
     print(divs)
     return
 

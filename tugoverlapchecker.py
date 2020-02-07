@@ -12,9 +12,19 @@ import time
 from pprint import pprint
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from datetime import datetime
 
 
-def test():
+class Appointment:
+    def __init__(self, date_str, time_range_str):
+        print(date_str)
+        self.date_ = datetime.strptime(date_str.strip(), '%d.%m.%Y').date()
+        self.time_range_ = time_range_str.replace(' ', '').split('-')
+        self.start_time_ = self.time_range_[0]
+        self.end_time_ = self.time_range_[1]
+
+
+def get_overlaps():
     url = "https://online.tugraz.at/tug_online/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses/226888?$ctx=design=ca;lang=en;rbacId=&$scrollTo=toc_DatesandGroups"
 
     chrome_options = webdriver.ChromeOptions()
@@ -25,8 +35,18 @@ def test():
     time.sleep(1)
     page = driver.page_source
     soup = BeautifulSoup(page, 'html.parser')
-    divs = soup.findAll("div", {"class": "compact-appointment-info"})
-    print(divs)
+    divs = soup.find_all("div", class_="compact-appointment-info")
+
+    appointments = []
+    for div in divs:
+        date_str = div.find("span", class_="appointment-date").text
+        date_str = date_str[len(" on "):]
+
+        time_range_str = div.find("span", class_="appointment-time").text
+        time_range_str = time_range_str[len(", "):]
+
+        appointment = Appointment(date_str, time_range_str)
+        appointments.append(appointment)
 
     # TODO:
     # 1. Check if conflicting dates
@@ -48,7 +68,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    test()
+    get_overlaps()
 
 
 if __name__ == "__main__":

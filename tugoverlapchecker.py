@@ -27,7 +27,17 @@ def test():
     soup = BeautifulSoup(page, 'html.parser')
     divs = soup.findAll("div", {"class": "compact-appointment-info"})
     print(divs)
-    return
+
+    # TODO:
+    # 1. Check if conflicting dates
+    # 2. Check if conflicting times on conflicting dates
+    #
+    # Range overlap check:
+    # 1. Get highest start value and lowest end value
+    # 2. Subtract
+    # 3. If delta is positive: Overlap
+    # For dates: https://stackoverflow.com/a/9044111/4644044
+
 
 
 def parse_args():

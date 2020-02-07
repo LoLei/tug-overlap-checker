@@ -67,7 +67,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    # Note: The comparison of n classes is most likely in O(n)
+    # Note: The comparison of n classes is most likely in O(n^2)
     # however it can be optimized by comparing only in one direction.
     # E.g. if day 1 and day 3 have been compared, day 3 and day 1 need not be
     # compared

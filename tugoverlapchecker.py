@@ -71,6 +71,12 @@ class Course:
             self.course_title_,
             len(self.appointments_)))
 
+    def get_dates(self):
+        dates = []
+        for appointment in self.appointments_:
+            dates.append(appointment.date_)
+        return dates
+
     def print_appointments(self):
         for appointment in self.appointments_:
             appointment.print_self()
@@ -89,9 +95,20 @@ def compare_courses(course1, course2):
                        course2.appointments_[len(
                         course2.appointments_) - 1].date_)
 
-    print(latest_start)
-    print(earliest_end)
-    pass
+    delta = (earliest_end - latest_start).days + 1
+    overlap = max(0, delta)
+    if overlap == 0:
+        print("No date overlap.")
+        return
+
+    print("Found date overlap.")
+
+    # Find exact overlapping days
+    conflicting_dates = list(
+            set(course1.get_dates()) & set(course2.get_dates()))
+    print("Conflicting dates:")
+    for c_d in conflicting_dates:
+        print(c_d.strftime('%Y-%m-%d'))
 
 
 def parse_args():
@@ -117,8 +134,9 @@ def main():
         course = Course(course_id)
         courses.append(course)
         course.print_appointments()
+        print()
 
-    compare_courses(courses[0], courses[1])
+    compare_courses(courses[1], courses[2])
 
     # TODO:
     # 1. Check if conflicting dates

@@ -63,7 +63,7 @@ class Course:
             appointment = Appointment(date_str, time_range_str)
             self.appointments_.append(appointment)
 
-        print("Found course {} with {} appointments.".format(
+        print("Found course: {}, with {} appointments.".format(
             self.course_title_,
             len(self.appointments_)))
 
@@ -82,6 +82,9 @@ def main():
 
     args = parse_args()
 
+    # Supply these via input argument
+    # Also maybe get these via search of the actual course ID
+    # (xxx.xxx)
     course_ids = [226888, 221424, 225088]
     courses = []
     for course_id in course_ids:

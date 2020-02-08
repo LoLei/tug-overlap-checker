@@ -22,12 +22,16 @@ class Appointment:
         self.start_time_ = self.time_range_[0]
         self.end_time_ = self.time_range_[1]
 
+    def print_self(self):
+        print("Appointment: date: {}, time range: {}".format(
+            self.date_, self.time_range_))
+
 
 class Course:
-    appointments_ = []
-    course_title_ = ""
-
     def __init__(self, course_id):
+        self.appointments_ = []
+        self.course_title_ = ""
+
         url = """
         https://online.tugraz.at/
         tug_online/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses/
@@ -67,6 +71,28 @@ class Course:
             self.course_title_,
             len(self.appointments_)))
 
+    def print_appointments(self):
+        for appointment in self.appointments_:
+            appointment.print_self()
+
+
+def compare_courses(course1, course2):
+    print("Comparing \"{}\" and \"{}\"...".format(
+        course1.course_title_, course2.course_title_))
+
+    # First check conflicting dates
+    latest_start = max(course1.appointments_[0].date_,
+                       course2.appointments_[0].date_)
+
+    earliest_end = min(course1.appointments_[len(
+                        course1.appointments_) - 1].date_,
+                       course2.appointments_[len(
+                        course2.appointments_) - 1].date_)
+
+    print(latest_start)
+    print(earliest_end)
+    pass
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -88,7 +114,11 @@ def main():
     course_ids = [226888, 221424, 225088]
     courses = []
     for course_id in course_ids:
-        courses.append(Course(course_id))
+        course = Course(course_id)
+        courses.append(course)
+        course.print_appointments()
+
+    compare_courses(courses[0], courses[1])
 
     # TODO:
     # 1. Check if conflicting dates

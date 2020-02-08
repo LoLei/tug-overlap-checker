@@ -25,6 +25,7 @@ class Appointment:
 
 class Course:
     appointments_ = []
+    course_title_ = ""
 
     def __init__(self, course_id):
         url = """
@@ -41,9 +42,15 @@ class Course:
         chrome_options.add_argument('window-size=1920x1080')
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
-        time.sleep(1)
+        time.sleep(5)
         page = driver.page_source
         soup = BeautifulSoup(page, 'html.parser')
+
+        self.course_title_ = soup.find("span",
+                                       class_="ca-header-page-title").text[len(
+                                           "Courses / "):]
+
+        # Get all appointment elements
         divs = soup.find_all("div", class_="compact-appointment-info")
 
         for div in divs:
@@ -55,6 +62,10 @@ class Course:
 
             appointment = Appointment(date_str, time_range_str)
             self.appointments_.append(appointment)
+
+        print("Found course {} with {} appointments.".format(
+            self.course_title_,
+            len(self.appointments_)))
 
 
 def parse_args():
@@ -71,7 +82,7 @@ def main():
 
     args = parse_args()
 
-    course_ids = [226888]
+    course_ids = [226888, 221424, 225088]
     courses = []
     for course_id in course_ids:
         courses.append(Course(course_id))

@@ -22,9 +22,9 @@ class Appointment:
         self.start_time_ = self.time_range_[0]
         self.end_time_ = self.time_range_[1]
 
-    def print_self(self):
-        print("Appointment: date: {}, time range: {}".format(
-            self.date_, self.time_range_))
+    def __str__(self):
+        return "Appointment: date: {}, time range: {}".format(
+            self.date_, self.time_range_)
 
     def __eq__(self, other):
         if isinstance(other, Appointment):
@@ -87,7 +87,7 @@ class Course:
 
     def print_appointments(self):
         for appointment in self.appointments_:
-            appointment.print_self()
+            print(appointment)
 
 
 def compare_courses(course1, course2):

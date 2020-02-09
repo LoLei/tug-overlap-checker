@@ -147,16 +147,6 @@ def main():
 
     compare_courses(courses[1], courses[2])
 
-    # TODO:
-    # 1. Check if conflicting dates
-    # 2. Check if conflicting times on conflicting dates
-    #
-    # Range overlap check:
-    # 1. Get highest start value and lowest end value
-    # 2. Subtract
-    # 3. If delta is positive: Overlap
-    # For dates: https://stackoverflow.com/a/9044111/4644044
-
 
 if __name__ == "__main__":
     main()

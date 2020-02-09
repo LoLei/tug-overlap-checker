@@ -26,6 +26,14 @@ class Appointment:
         print("Appointment: date: {}, time range: {}".format(
             self.date_, self.time_range_))
 
+    def __eq__(self, other):
+        if isinstance(other, Appointment):
+            return self.date_ == other.date_
+        return False
+
+    def __hash__(self):
+        return hash(self.date_)
+
 
 class Course:
     def __init__(self, course_id):
@@ -104,11 +112,11 @@ def compare_courses(course1, course2):
     print("Found date overlap.")
 
     # Find exact overlapping days
-    conflicting_dates = list(
-            set(course1.get_dates()) & set(course2.get_dates()))
+    conflicting_appointments = list(
+            set(course1.appointments_) & set(course2.appointments_))
     print("Conflicting dates:")
-    for c_d in conflicting_dates:
-        print(c_d.strftime('%Y-%m-%d'))
+    for c_a in conflicting_appointments:
+        print(c_a.date_.strftime('%Y-%m-%d'))
 
 
 def parse_args():

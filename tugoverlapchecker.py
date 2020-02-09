@@ -121,7 +121,7 @@ def compare_courses(course1, course2):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("courseid", help="course id")
+    parser.add_argument('courseid', help="course ids", nargs='+')
     return parser.parse_args()
 
 
@@ -136,7 +136,8 @@ def main():
     # Supply these via input argument
     # Also maybe get these via search of the actual course ID
     # (xxx.xxx)
-    course_ids = [226888, 221424, 225088]
+    # course_ids = [226888, 221424, 225088]
+    course_ids = args.courseid
     courses = []
     for course_id in course_ids:
         course = Course(course_id)

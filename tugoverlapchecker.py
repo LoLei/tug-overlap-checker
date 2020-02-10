@@ -19,8 +19,8 @@ class Appointment:
     def __init__(self, date_str, time_range_str):
         self.date_ = datetime.strptime(date_str.strip(), '%d.%m.%Y').date()
         self.time_range_ = time_range_str.replace(' ', '').split('-')
-        self.start_time_ = self.time_range_[0]
-        self.end_time_ = self.time_range_[1]
+        self.start_time_ = datetime.strptime(self.time_range_[0], '%H:%M')
+        self.end_time_ = datetime.strptime(self.time_range_[1], '%H:%M')
 
     def __str__(self):
         return "Appointment: date: {}, time range: {}".format(
@@ -97,7 +97,14 @@ def compare_appointments(appointment1, appointment2):
     assert appointment1.date_ == appointment2.date_
     print("Checking for time overlap on \"{}\"...".
           format(appointment1.date_))
-    # TODO
+    print("Times to check: {}, {}".
+          format(appointment1.time_range_, appointment2.time_range_))
+
+    latest_start = max(appointment1.start_time_, appointment2.start_time_)
+    earliest_end = min(appointment1.end_time_, appointment2.end_time_)
+
+    print(latest_start)
+    print(earliest_end)
 
 
 def compare_courses(course1, course2):

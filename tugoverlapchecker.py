@@ -103,8 +103,13 @@ def compare_appointments(appointment1, appointment2):
     latest_start = max(appointment1.start_time_, appointment2.start_time_)
     earliest_end = min(appointment1.end_time_, appointment2.end_time_)
 
-    print(latest_start)
-    print(earliest_end)
+    delta = (earliest_end - latest_start).seconds
+    overlap = max(0, delta)
+    if overlap == 0:
+        print("No time overlap.")
+        return
+
+    print("Found time overlap.")
 
 
 def compare_courses(course1, course2):

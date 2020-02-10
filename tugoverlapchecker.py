@@ -109,7 +109,7 @@ def compute_time_overlap(appointment1, appointment2):
         print("No time overlap.")
         return False
 
-    print("Found time overlap.")
+    print("\033[93mFound time overlap.\033[0m")
     return True
 
 
@@ -135,7 +135,7 @@ def compare_courses(course1, course2):
         print("No date overlap.")
         return
 
-    print("Found date overlap.")
+    print("\033[93mFound date overlap.\033[0m")
 
     # Find exact overlapping days
     conflicting_appointments = list(

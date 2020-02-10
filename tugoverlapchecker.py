@@ -90,7 +90,7 @@ class Course:
             print(appointment)
 
 
-def compare_appointments(appointment1, appointment2):
+def compute_time_overlap(appointment1, appointment2):
     """
     Compare two appointments on the same day
     """
@@ -107,9 +107,10 @@ def compare_appointments(appointment1, appointment2):
     overlap = max(0, delta)
     if overlap == 0:
         print("No time overlap.")
-        return
+        return False
 
     print("Found time overlap.")
+    return True
 
 
 def compare_courses(course1, course2):
@@ -144,9 +145,13 @@ def compare_courses(course1, course2):
         print(c_a.date_.strftime('%Y-%m-%d'))
 
     for c_a in conflicting_appointments:
-        compare_appointments(
-            course1.appointments_[course1.appointments_.index(c_a)],
-            course2.appointments_[course2.appointments_.index(c_a)])
+        if compute_time_overlap(
+                course1.appointments_[course1.appointments_.index(c_a)],
+                course2.appointments_[course2.appointments_.index(c_a)]):
+
+            print("For courses {} and {} on {}".format(
+                course1.course_title_, course2.course_title_,
+                c_a.date_))
 
 
 def parse_args():

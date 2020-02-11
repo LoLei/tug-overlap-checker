@@ -6,7 +6,7 @@ The tool will get the dates and times for specified courses,
 compare them, and report any conflicts.
 
 ## Installation
-`pip install tug-overlap-checker`
+[`pip install tug-overlap-checker`](https://pypi.org/project/tug-overlap-checker/)
 
 ## Usage
 ```

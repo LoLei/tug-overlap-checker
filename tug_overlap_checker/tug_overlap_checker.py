@@ -35,6 +35,22 @@ class Appointment:
         return hash(self.date_)
 
 
+class Driver:
+    """ Singleton """
+    class __Driver:
+        def __init__(self):
+            print("__Driver::__init__")
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('window-size=1920x1080')
+            self.driver_ = webdriver.Chrome(options=chrome_options)
+    instance = None
+
+    def __init__(self):
+        if not Driver.instance:
+            Driver.instance = Driver.__Driver()
+
+
 class Course:
     def __init__(self, course_id):
         self.appointments_ = []
@@ -49,13 +65,9 @@ class Course:
         """.format(course_id=course_id)
         url = dedent(url).replace('\n', '')
 
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('window-size=1920x1080')
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.get(url)
+        Driver().instance.driver_.get(url)
         time.sleep(30)
-        page = driver.page_source
+        page = Driver().instance.driver_.page_source
         soup = BeautifulSoup(page, 'html.parser')
 
         self.course_title_ = soup.find("span",

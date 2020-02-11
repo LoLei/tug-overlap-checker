@@ -76,3 +76,12 @@ For courses Entrepreneurship and Marketing Management on 2020-05-04
 Due to many conflicting classes this semester and seeing how
 comparing them manually is a PITA, this tool was created to
 automate the process.
+
+Since many different universities use the same online system,
+this may very well also work with other universities' sites
+like KFU. Changing the access URL is necessary for this though.
+
+Unfortunately there is no API for TUGO, or at least none that 
+is easily accessible for a small project like this (since Studo
+*must* have one), therefore the data is scraped from the website
+at generous intervals.

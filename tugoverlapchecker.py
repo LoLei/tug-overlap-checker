@@ -161,17 +161,10 @@ def parse_args():
 
 
 def main():
-    # Note: The comparison of n courses is most likely in O(n^2)
-    # however it can be optimized by comparing only in one direction.
-    # E.g. if day 1 and day 3 have been compared, day 3 and day 1 need not be
-    # compared
-
     args = parse_args()
 
-    # Supply these via input argument
-    # Also maybe get these via search of the actual course ID
+    # Maybe get these via search of the actual course ID
     # (xxx.xxx)
-    # course_ids = [226888, 221424, 225088]
     course_ids = args.courseid
     courses = []
     for course_id in course_ids:
@@ -180,7 +173,11 @@ def main():
         course.print_appointments()
         print()
 
-    compare_courses(courses[1], courses[2])
+    for i in range(len(courses)):
+        j = i + 1
+        while j < len(courses):
+            compare_courses(courses[i], courses[j])
+            j += 1
 
 
 if __name__ == "__main__":

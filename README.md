@@ -84,4 +84,4 @@ like KFU. Changing the access URL is necessary for this though.
 Unfortunately there is no API for TUGO, or at least none that 
 is easily accessible for a small project like this (since Studo
 *must* have one), therefore the data is scraped from the website
-at generous intervals.
+at [generous intervals](https://online.tugraz.at/robots.txt).

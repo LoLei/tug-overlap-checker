@@ -10,8 +10,8 @@ compare them, and report any conflicts.
 
 ## Usage
 ```
-$ tugoverlapchecker -h
-usage: tugoverlapchecker [-h] courseid [courseid ...]
+$ tug-overlap-checker -h
+usage: tug-overlap-checker [-h] courseid [courseid ...]
 
 positional arguments:
   courseid    course ids
@@ -30,7 +30,7 @@ E.g.:
 
 ### Example Usage
 ```
-$ tugoverlapchecker 226888 221424 225088
+$ tug-overlap-checker 226888 221424 225088
 Found course: Information and Communication Management, with 3 appointments.
 Appointment: date: 2020-06-17, time range: ['13:30', '21:00']
 Appointment: date: 2020-06-18, time range: ['09:30', '20:00']

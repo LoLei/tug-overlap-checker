@@ -54,7 +54,7 @@ class Course:
         chrome_options.add_argument('window-size=1920x1080')
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
-        time.sleep(5)
+        time.sleep(30)
         page = driver.page_source
         soup = BeautifulSoup(page, 'html.parser')
 

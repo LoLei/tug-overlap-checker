@@ -1,6 +1,9 @@
 # tug-overlap-checker
 
-Check for course overlaps at Graz University of Technology
+Check for course overlaps at Graz University of Technology 🎓
+
+The tool will get the dates and times for specified courses,
+compare them, and report any conflicts.
 
 ## Installation
 `pip install tug-overlap-checker`

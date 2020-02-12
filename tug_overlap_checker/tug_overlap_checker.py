@@ -36,14 +36,20 @@ class Appointment:
 
 
 class Driver:
-    """ Singleton """
     class __Driver:
         def __init__(self):
-            print("__Driver::__init__")
-            chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument('--headless')
-            chrome_options.add_argument('window-size=1920x1080')
-            self.driver_ = webdriver.Chrome(options=chrome_options)
+            self.chrome_options_ = webdriver.ChromeOptions()
+            self.chrome_options_.add_argument('--headless')
+            self.chrome_options_.add_argument('window-size=1920x1080')
+            self.driver_ = None
+
+        def get(self, url):
+            self.driver_ = webdriver.Chrome(options=self.chrome_options_)
+            return self.driver_.get(url)
+
+        def page_source(self):
+            return self.driver_.page_source
+
     instance = None
 
     def __init__(self):
@@ -65,9 +71,9 @@ class Course:
         """.format(course_id=course_id)
         url = dedent(url).replace('\n', '')
 
-        Driver().instance.driver_.get(url)
+        Driver().instance.get(url)
         time.sleep(30)
-        page = Driver().instance.driver_.page_source
+        page = Driver().instance.page_source()
         soup = BeautifulSoup(page, 'html.parser')
 
         self.course_title_ = soup.find("span",

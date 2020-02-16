@@ -172,14 +172,14 @@ def compare_courses(course1, course2):
                 c_a.date_))
 
 
-def parse_args():
+def parse_args(raw_args):
     parser = argparse.ArgumentParser()
     parser.add_argument('courseid', help="course ids", nargs='+')
-    return parser.parse_args()
+    return parser.parse_args(raw_args)
 
 
-def main():
-    args = parse_args()
+def main(raw_args=None):
+    args = parse_args(raw_args)
 
     # Maybe get these via search of the actual course ID
     # (xxx.xxx)

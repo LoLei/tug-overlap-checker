@@ -4,7 +4,7 @@ TUG Overlap Checker
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 __license__ = "MIT"
 
 import argparse
@@ -72,7 +72,7 @@ class Course:
         url = dedent(url).replace('\n', '')
 
         Driver().instance.get(url)
-        time.sleep(30)
+        time.sleep(5)
         page = Driver().instance.page_source()
         soup = BeautifulSoup(page, 'html.parser')
 

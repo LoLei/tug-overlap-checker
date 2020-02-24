@@ -5,7 +5,7 @@ LONG_DESC = open('README.md').read()
 
 setuptools.setup(
     name="tug-overlap-checker",
-    version="0.1.2",
+    version="0.1.3",
     author="Lorenz Leitner",
     author_email="lrnz.ltnr@gmail.com",
     description="Check for course overlaps at Graz University of Technology",

@@ -4,7 +4,7 @@ TUG Overlap Checker
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "0.1.3"
+__version__ = "1.0.4"
 __license__ = "MIT"
 
 import argparse
@@ -40,6 +40,8 @@ class Driver:
         def __init__(self):
             self.chrome_options_ = webdriver.ChromeOptions()
             self.chrome_options_.add_argument('--headless')
+            self.chrome_options_.add_argument('--no-sandbox')
+            self.chrome_options_.add_argument('--disable-dev-shm-usage')
             self.chrome_options_.add_argument('window-size=1920x1080')
             self.driver_ = None
 

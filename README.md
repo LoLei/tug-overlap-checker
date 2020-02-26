@@ -72,6 +72,11 @@ Found time overlap.
 For courses Entrepreneurship and Marketing Management on 2020-05-04
 ```
 
+## Web Interface
+A web interface has been added. Check it out 
+[here](https://github.com/LoLei/toc-web) or open it directly 
+[here](https://tug-overlap-checker.herokuapp.com/).
+
 ## Background
 Due to many conflicting classes this semester and seeing how
 comparing them manually is a PITA, this tool was created to
